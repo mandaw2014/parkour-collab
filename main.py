@@ -1,8 +1,14 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
-
+from player import Player
 # App/Window
 app = Ursina()
+
+normalSpeed = 1
+boostSpeed  = 2
+
+normalJump = 0.3
+boostJump  = 1
 
 # Sky texture
 sky_texture = load_texture("assets/sky.png")
@@ -56,9 +62,9 @@ class SlowBlock(Entity):
         )
 
 # Player
-player = FirstPersonController()
-player.speed = 6
-player.jump_height = 4
+player = Player("cube",(0,2,0),"box")
+player.SPEED = normalSpeed
+player.jump_height = normalJump
 
 # Sky
 sky = Sky(texture = "assets/sky")
@@ -85,7 +91,7 @@ ground_1 = Entity(model = "cube", scale_x = 10, scale_z = 10, collider = "box", 
 finishBlock_1 = Entity(model = "cube", scale_x = 5, scale_z = 5, collider = "box", texture = "white_cube", color = "#CACACA", position = (25, 10, 45))
 
 def speed():
-    player.speed = 6
+    player.SPEED = normalSpeed
 
 def update():
     # Escape button quits
@@ -94,64 +100,64 @@ def update():
 
     # Stops the player from falling forever
     if player.position.y <= -50:
-        player.position = Vec3(0, 20, 0)
-        player.speed = 6
-        player.jump_height = 4
+        player.position = Vec3(0, 2, 0)
+        player.SPEED = normalSpeed
+        player.jump_height = normalJump
 
     # Restart the level
     if held_keys["g"]:
-        player.position = Vec3(0, 0, 0)
-        player.speed = 6
-        player.jump_height = 4
+        player.position = Vec3(0, 2, 0)
+        player.SPEED = normalSpeed
+        player.jump_height = normalJump
 
     # What entity the player hits
     hit = raycast(player.position, player.down, distance=2, ignore=[player,])
     
     if hit.entity == block_1_6:
-        player.jump_height = 20
+        player.jump_height = boostJump
     elif hit.entity != block_1_6:
-        player.jump_height = 4
+        player.jump_height = normalJump
 
     if hit.entity == block_1_8:
-        player.speed = 20
+        player.SPEED = boostSpeed
         invoke(speed, delay=3)
 
     if hit.entity == finishBlock_1:
         invoke(destroyLevel01, delay = 3)
-        player.position = Vec3(0,0,0)
+        player.position = Vec3(0,2,0)
     
     if block_2_2.enabled == True:
         if hit.entity == block_2_2:
-            player.jump_height = 40
+            player.jump_height = boostJump*1.3
         elif hit.entity != block_2_2:
-            player.jump_height = 4
+            player.jump_height = normalJump
 
     if block_2_5.enabled == True:
         if hit.entity == block_2_5:
-            player.speed = 20
+            player.SPEED = boostSpeed
             invoke(speed, delay=3)
 
     if finishBlock_2.enabled == True:
         if hit.entity == finishBlock_2:
             invoke(destroyLevel02, delay = 3)
-            player.position = Vec3(0,0,0)
+            player.position = Vec3(0,2,0)
 
     if hit.entity == block_3_1:
-        player.speed = 20
+        player.SPEED = boostSpeed
     if hit.entity == block_3_2:
-        player.speed = 30
+        player.SPEED = boostSpeed*1.5
     if hit.entity == block_3_3:
-        player.speed = 40
+        player.SPEED = boostSpeed *2
     if hit.entity == block_3_4:
-        player.speed = 50
+        player.SPEED = boostSpeed *2.5
     if hit.entity == block_3_5:
-        player.speed = 70
+        player.SPEED = boostSpeed *3.5
     if hit.entity == block_3_6:
-        player.speed = 100
+        player.SPEED = boostSpeed * 5
     if hit.entity == block_3_7:
-        player.speed = 120
+        player.SPEED = boostSpeed *6
     if hit.entity == block_3_8:
-        player.speed = 6
+        player.SPEED = normalSpeed
 
 #Level02
 
