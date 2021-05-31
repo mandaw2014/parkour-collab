@@ -1,6 +1,8 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 from player import Player
+import time
+
 # App/Window
 app = Ursina()
 
@@ -62,7 +64,7 @@ class SlowBlock(Entity):
         )
 
 # Player
-player = Player("cube",(0,2,0),"box")
+player = Player("cube",(0,2,0),"box",controls='wasd')
 player.SPEED = normalSpeed
 player.jump_height = normalJump
 
@@ -93,6 +95,13 @@ finishBlock_1 = Entity(model = "cube", scale_x = 5, scale_z = 5, collider = "box
 def speed():
     player.SPEED = normalSpeed
 
+def resetPlayer():
+    player.SPEED = normalSpeed
+    player.position = Vec3(0,2,0)
+    player.jump_height = normalJump
+    player.rotation =(0,0,0)
+
+resetPlayer()
 def update():
     # Escape button quits
     if held_keys["escape"]:
@@ -100,15 +109,11 @@ def update():
 
     # Stops the player from falling forever
     if player.position.y <= -50:
-        player.position = Vec3(0, 2, 0)
-        player.SPEED = normalSpeed
-        player.jump_height = normalJump
+        resetPlayer()
 
     # Restart the level
     if held_keys["g"]:
-        player.position = Vec3(0, 2, 0)
-        player.SPEED = normalSpeed
-        player.jump_height = normalJump
+        resetPlayer()
 
     # What entity the player hits
     hit = raycast(player.position, player.down, distance=2, ignore=[player,])
@@ -124,7 +129,7 @@ def update():
 
     if hit.entity == finishBlock_1:
         destroyLevel01()
-        player.position = Vec3(0,2,0)
+        resetPlayer()
     
     if block_2_2.enabled == True:
         if hit.entity == block_2_2:
@@ -140,7 +145,7 @@ def update():
     if finishBlock_2.enabled == True:
         if hit.entity == finishBlock_2:
             destroyLevel02()
-            player.position = Vec3(0,2,0)
+            resetPlayer()
 
     if hit.entity == block_3_1:
         player.SPEED = boostSpeed
@@ -151,7 +156,7 @@ def update():
     if hit.entity == block_3_4:
         player.SPEED = boostSpeed *2.5
     if hit.entity == block_3_5:
-        player.SPEED = boostSpeed *3.5
+        player.SPEED = boostSpeed *4
     if hit.entity == block_3_6:
         player.SPEED = boostSpeed * 5
     if hit.entity == block_3_7:

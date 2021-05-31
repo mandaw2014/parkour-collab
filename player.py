@@ -54,10 +54,12 @@ class Player(Entity):
             if move:
                 self.y += y_movement
 
-        z_movement = 0.2*round((held_keys[self.controls[0]] * self.SPEED + -held_keys[self.controls[2]] * self.SPEED)*math.cos(math.radians(self.rotation_y)), 5)+round(
-            (held_keys[self.controls[3]] * self.SPEED + -held_keys[self.controls[1]] * self.SPEED)*math.cos(math.radians(self.rotation_y+90)), 5)*time.dt
-        x_movement = 0.2*round((held_keys[self.controls[0]] * self.SPEED + -held_keys[self.controls[2]] * self.SPEED)*math.sin(math.radians(self.rotation_y)), 5)+round(
-            (held_keys[self.controls[3]] * self.SPEED + -held_keys[self.controls[1]] * self.SPEED)*math.sin(math.radians(self.rotation_y+90)), 5)*time.dt
+        z_movement = (round((held_keys[self.controls[0]] + -held_keys[self.controls[2]])*math.cos(math.radians(self.rotation_y)), 5)+\
+                        round((held_keys[self.controls[3]] + -held_keys[self.controls[1]])*math.cos(math.radians(self.rotation_y+90)), 5))\
+                    *time.dt*6 * self.SPEED
+        x_movement =(round((held_keys[self.controls[0]] + -held_keys[self.controls[2]])*math.sin(math.radians(self.rotation_y)), 5)+\
+                        round((held_keys[self.controls[3]] + -held_keys[self.controls[1]])*math.sin(math.radians(self.rotation_y+90)), 5))\
+                    *time.dt*6 * self.SPEED
 
         if x_movement != 0:
             direction = (1, 0, 0)
