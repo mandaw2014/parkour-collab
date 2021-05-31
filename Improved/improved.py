@@ -119,8 +119,10 @@ def update():
         invoke(speed, delay=3)
 
     if hit.entity == finishBlock_1:
-        destroyLevel01()
+        invoke(destroyLevel01, delay = 1)
         player.position = Vec3(0, 5, 0)
+        player.SPEED = normalSpeed
+        player.jump_height = normalJump
     
     if block_2_2.enabled == True:
         if hit.entity == block_2_2:
@@ -135,7 +137,9 @@ def update():
 
     if finishBlock_2.enabled == True:
         if hit.entity == finishBlock_2:
-            destroyLevel02()
+            invoke(destroyLevel02, delay = 1)
+            player.SPEED = normalSpeed
+            player.jump_height = normalJump
             player.position = Vec3(0, 5, 0)
 
     if hit.entity == block_3_1:
