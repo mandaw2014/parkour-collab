@@ -5,8 +5,8 @@ from player import Player
 # App/Window
 app = Ursina()
 
-normalSpeed = 1
-boostSpeed  = 2
+normalSpeed = 2
+boostSpeed  = 3
 
 normalJump = 0.3
 
@@ -59,7 +59,7 @@ class SlowBlock(Entity):
         )
 
 # Player
-player = Player("cube", (0, 10, 0), "box")
+player = Player("cube", (0, 10, 0), "box", controls='wasd')
 player.SPEED = normalSpeed
 player.jump_height = normalJump
 
@@ -115,7 +115,7 @@ def update():
         player.jump_height = normalJump
 
     if hit.entity == block_1_8:
-        player.SPEED = boostSpeed
+        player.SPEED = boostSpeed * 1.2
         invoke(speed, delay=3)
 
     if hit.entity == finishBlock_1:
@@ -130,7 +130,7 @@ def update():
 
     if block_2_5.enabled == True:
         if hit.entity == block_2_5:
-            player.SPEED = boostSpeed
+            player.SPEED = boostSpeed * 1.5
             invoke(speed, delay=3)
 
     if finishBlock_2.enabled == True:
@@ -141,9 +141,9 @@ def update():
     if hit.entity == block_3_1:
         player.SPEED = boostSpeed * 1.5
     if hit.entity == block_3_2:
-        player.SPEED = boostSpeed * 1.5
-    if hit.entity == block_3_3:
         player.SPEED = boostSpeed * 2
+    if hit.entity == block_3_3:
+        player.SPEED = boostSpeed * 2.5
     if hit.entity == block_3_4:
         player.SPEED = boostSpeed * 3
     if hit.entity == block_3_5:
