@@ -63,6 +63,12 @@ player.jump_height = 4
 # Sky
 sky = Sky(texture = "../assets/sky")
 
+# Lighting
+light = PointLight(parent = camera, position = (0, 1.1, -1.5))
+light.color = color.white
+
+AmbientLight(color = color.rgba(100, 100, 100, 0.1))
+
 # Level 02 platforms
 ground_2 = Entity(model = "cube", scale_x = 10, scale_z = 10, collider = "box", texture = "white_cube", color = "#CACACA")
 finishBlock_2 = Entity(model = "cube", scale_x = 5, scale_z = 5, collider = "box", texture = "white_cube", color = "#CACACA", position = (0, 11, 67))
