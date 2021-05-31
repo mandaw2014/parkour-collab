@@ -3,7 +3,7 @@ import math
 
 
 class Player(Entity):
-    def __init__(self, model, position, collider, scale=(1, 1, 1), SPEED=3, velocity=(0, 0, 0), MAXJUMP=1, gravity=1, **kwargs):
+    def __init__(self, model, position, collider, scale=(1, 1, 1), SPEED=3, velocity=(0, 0, 0), MAXJUMP=1, gravity=1,controls = "wasd", **kwargs):
 
         super().__init__(model="cube", position=position,
                          collider=collider, scale=(1.3, 1, 1.3), visible_self=False)
@@ -19,6 +19,7 @@ class Player(Entity):
         self.gravity = gravity
         self.jump_height = 0.3
         self.slope = 40
+        self.controls = controls
         for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
@@ -53,10 +54,10 @@ class Player(Entity):
             if move:
                 self.y += y_movement
 
-        z_movement = 0.2*round((held_keys['w'] * self.SPEED + -held_keys['s'] * self.SPEED)*math.cos(math.radians(self.rotation_y)), 5)+round(
-            (held_keys['d'] * self.SPEED + -held_keys['a'] * self.SPEED)*math.cos(math.radians(self.rotation_y+90)), 5)*time.dt
-        x_movement = 0.2*round((held_keys['w'] * self.SPEED + -held_keys['s'] * self.SPEED)*math.sin(math.radians(self.rotation_y)), 5)+round(
-            (held_keys['d'] * self.SPEED + -held_keys['a'] * self.SPEED)*math.sin(math.radians(self.rotation_y+90)), 5)*time.dt
+        z_movement = 0.2*round((held_keys[self.controls[0]] * self.SPEED + -held_keys[self.controls[2]] * self.SPEED)*math.cos(math.radians(self.rotation_y)), 5)+round(
+            (held_keys[self.controls[3]] * self.SPEED + -held_keys[self.controls[1]] * self.SPEED)*math.cos(math.radians(self.rotation_y+90)), 5)*time.dt
+        x_movement = 0.2*round((held_keys[self.controls[0]] * self.SPEED + -held_keys[self.controls[2]] * self.SPEED)*math.sin(math.radians(self.rotation_y)), 5)+round(
+            (held_keys[self.controls[3]] * self.SPEED + -held_keys[self.controls[1]] * self.SPEED)*math.sin(math.radians(self.rotation_y+90)), 5)*time.dt
 
         if x_movement != 0:
             direction = (1, 0, 0)
