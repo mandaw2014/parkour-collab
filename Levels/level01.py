@@ -60,6 +60,12 @@ player.jump_height = 4
 # Sky
 sky = Sky(texture = "../assets/sky")
 
+# Lighting
+light = PointLight(parent = camera, position = (0, 1.1, -1.5))
+light.color = color.white
+
+AmbientLight(color = color.rgba(100, 100, 100, 0.1))
+
 #Level01
 
 block_1 = NormalBlock(position = (0, 1, 9))
