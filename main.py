@@ -136,7 +136,7 @@ finishBlock_1 = Entity(model = "cube", scale_x = 5, scale_z = 5, collider = "box
 
 #Level02
 
-level2 = [NormalBlock(position = (0, 1, 9)),NormalBlock(position = (0, 2, 15)),JumpBlock(position = (0, -20, 25),power=1.5),NormalBlock(position = (0, 10, 30)),NormalBlock(position = (0, 10, 37)),SpeedBlock(position = (0, 10, 45)),NormalBlock(position = (0, 11, 60)),Entity(model = "cube", scale_x = 10, scale_z = 10, collider = "box", texture = "white_cube", color = "#CACACA")]
+level2 = [NormalBlock(position = (0, 1, 9)),NormalBlock(position = (0, 2, 15)),JumpBlock(position = (0, -20, 25),power=2),NormalBlock(position = (0, 10, 30)),NormalBlock(position = (0, 10, 37)),SpeedBlock(position = (0, 10, 45)),NormalBlock(position = (0, 11, 60)),Entity(model = "cube", scale_x = 10, scale_z = 10, collider = "box", texture = "white_cube", color = "#CACACA")]
 finishBlock_2 = Entity(model = "cube", scale_x = 5, scale_z = 5, collider = "box", texture = "white_cube", color = "#CACACA", position = (0, 11, 67))
 
 for block in level2 :
