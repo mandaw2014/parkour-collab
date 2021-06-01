@@ -29,7 +29,7 @@ class Player(Entity):
 
     def update(self):
 
-        y_movement = self.velocity_y
+        y_movement = self.velocity_y *time.dt
 
         direction = (0, 1, 0)
         if y_movement < 0:
@@ -39,7 +39,7 @@ class Player(Entity):
         if yRay.hit:
             self.velocity_y = 0
         else:
-            self.velocity_y -= self.gravity * time.dt
+            self.velocity_y -= self.gravity * time.dt *25
 
         if y_movement != 0:
             direction = (0, 1, 0)
@@ -135,7 +135,7 @@ class Player(Entity):
     def input(self, key):
         if key == 'space':
             if self.jump_count < self.MAXJUMP:
-                self.velocity_y = self.jump_height
+                self.velocity_y = self.jump_height * 30
                 self.jump_count += 1
 
 
