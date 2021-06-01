@@ -76,8 +76,38 @@ def to_tuple(string):
     return tuple(map(int, string.split(', ')))
 
 class Level:
-    def __init__(self,src):
-        with open("./level/"+src) as source :
+    def __init__(self,src= None):
+        if src :
+            src = "./level/"+src
+            self.load(src)
+            self.disable()
+        else :
+            self.title = ""
+            self.blocks = []
+            self.finish = None
+
+
+    def disable(self):
+        self.finish.disable()
+        for block in self.blocks:
+            block.disable()
+
+    def enable(self):
+        self.finish.enable()
+        for block in self.blocks:
+            block.enable()
+
+    def clear(self):
+        self.title = ""
+        for entity in self.blocks :
+            destroy(entity)
+        self.blocks = []
+        if self.finish :
+            destroy(self.finish)
+        self.finish = None
+
+    def load(self,src):
+        with open(src) as source :
             elements = source.readlines()
             for index,elem in enumerate(elements):
                 elements[index] = elem.strip("\n")
@@ -99,17 +129,24 @@ class Level:
                 self.finish = EndBlock(position=to_tuple(block[1]))
             elif block[0] == "StartBlock" :
                 self.blocks.append(StartBlock(position=to_tuple(block[1])))
-        self.disable()
 
-    def disable(self):
-        self.finish.disable()
-        for block in self.blocks:
-            block.disable()
-
-    def enable(self):
-        self.finish.enable()
-        for block in self.blocks:
-            block.enable()
-
+    def save(self):
+        output = self.title 
+        for element in self.blocks:
+            output+="\n"
+            if type(element) == NormalBlock:
+                output += "NormalBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]
+            elif type(element) == EndBlock:
+                output += "EndBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]
+            elif type(element) == StartBlock:
+                output += "StartBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]
+            elif type(element) == SpeedBlock:
+                output += "SpeedBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(element.power)
+            elif type(element) == SlowBlock:
+                output += "SlowBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(element.power)
+            elif type(element) == JumpBlock:
+                output += "JumpBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(element.power)
+        print(output)
+        return output
 if __name__ == "__main__":
     Level("1.level")
