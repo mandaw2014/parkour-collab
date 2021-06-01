@@ -147,17 +147,17 @@ class Level:
         for element in self.blocks:
             output+="\n"
             if type(element) == NormalBlock:
-                output += "NormalBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]
+                output += "NormalBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
             elif type(element) == EndBlock:
-                output += "EndBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]
+                output += "EndBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
             elif type(element) == StartBlock:
-                output += "StartBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]
+                output += "StartBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
             elif type(element) == SpeedBlock:
-                output += "SpeedBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(element.power)
+                output += "SpeedBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
             elif type(element) == SlowBlock:
-                output += "SlowBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(element.power)
+                output += "SlowBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
             elif type(element) == JumpBlock:
-                output += "JumpBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(element.power)
+                output += "JumpBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
         print(output)
         return output
 if __name__ == "__main__":
