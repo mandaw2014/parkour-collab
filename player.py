@@ -20,7 +20,7 @@ class Player(Entity):
         self.jump_height = 0.3
         self.slope = 40
         self.controls = controls
-        self.sensibility = 70
+        self.sensibility = 150
         for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
