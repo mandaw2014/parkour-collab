@@ -135,7 +135,7 @@ class Player(Entity):
     def input(self, key):
         if key == 'space':
             if self.jump_count < self.MAXJUMP:
-                self.velocity_y = self.jump_height * 30
+                self.velocity_y = self.jump_height * 40
                 self.jump_count += 1
 
 

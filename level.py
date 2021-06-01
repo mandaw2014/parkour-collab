@@ -144,7 +144,7 @@ class Level:
 
     def save(self):
         output = self.title 
-        for element in self.blocks:
+        for element in self.blocks+[self.finish]:
             output+="\n"
             if type(element) == NormalBlock:
                 output += "NormalBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]

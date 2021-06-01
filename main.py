@@ -70,6 +70,16 @@ def update():
         level3.enable()
         resetPlayer()
 
+    elif hit.entity == level3.finish:
+        level3.disable()
+        level4.enable()
+        resetPlayer()
+
+    elif hit.entity == level4.finish:
+        level4.disable()
+        level5.enable()
+        resetPlayer()
+
         
 
 def input(key):
@@ -91,6 +101,14 @@ level2 = Level("2.level")
 #Level03
 
 level3 = Level("3.level")
+
+#Level04
+
+level4 = Level("4.level")
+
+#Level05
+
+level5 = Level("5.level")
 
 
 level1.enable()
