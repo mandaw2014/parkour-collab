@@ -1,0 +1,11 @@
+Level Three
+StartBlock;0, 0, 0
+SpeedBlock;0, 0, 13;1
+SpeedBlock;0, 0, 32;1.5
+SpeedBlock;0, 0, 58;2
+SpeedBlock;0, 0, 80;2.5
+SpeedBlock;0, 0, 120;3.5
+SpeedBlock;0, 0, 180;4
+SpeedBlock;0, 0, 240;5
+SlowBlock;0, 0, 300;1.5
+EndBlock;0, 0, 315
