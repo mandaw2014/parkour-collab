@@ -1,12 +1,12 @@
 Level One
-StartBlock;0, 0, 0
-NormalBlock;0, 1, 9
-NormalBlock;0, 2, 14
-NormalBlock;0, 3, 19
-NormalBlock;0, 4, 24
-NormalBlock;5, 5, 24
-NormalBlock;10, 6, 24
-JumpBlock;17, 2, 24;1
-NormalBlock;25, 10, 24
-SpeedBlock;25, 10, 33;1
-EndBlock;25, 10, 45
+StartBlock;0, 0, 0;0, 0, 0
+NormalBlock;0, 1, 9;0, 0, 0
+NormalBlock;0, 2, 14;0, 0, 0
+NormalBlock;0, 3, 19;0, 0, 0
+NormalBlock;0, 4, 24;0, 0, 0
+NormalBlock;5, 5, 24;0, 0, 0
+NormalBlock;10, 6, 24;0, 0, 0
+JumpBlock;17, 2, 24;0, 0, 0;1
+NormalBlock;25, 10, 24;0, 0, 0
+SpeedBlock;25, 10, 33;0, 0, 0;1
+EndBlock;25, 10, 45;0, 0, 0

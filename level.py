@@ -2,7 +2,7 @@ from ursina import *
 
 # Normal Block Class
 class NormalBlock(Entity):
-    def __init__(self, position = (0, 0, 0)):
+    def __init__(self, position = (0, 0, 0),**kwargs):
         super().__init__(
             model = "cube",
             scale = Vec3(3, 0.8, 3),
@@ -11,10 +11,12 @@ class NormalBlock(Entity):
             texture = "white_cube",
             position = position,
         )
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 # Jump Block Class
 class JumpBlock(Entity):
-    def __init__(self, position = (0, 0, 0),power=1):
+    def __init__(self, position = (0, 0, 0),power=1,**kwargs):
         super().__init__(
             model = "cube",
             scale = Vec3(3, 0.8, 3),
@@ -24,10 +26,12 @@ class JumpBlock(Entity):
             position = position,
         )
         self.power = power
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 # Speed Block Class
 class SpeedBlock(Entity):
-    def __init__(self, position = (0, 0, 0),power=1):
+    def __init__(self, position = (0, 0, 0),power=1,**kwargs):
         super().__init__(
             model = "cube",
             scale = Vec3(3, 0.5, 8),
@@ -37,10 +41,12 @@ class SpeedBlock(Entity):
             position = position,
         )
         self.power = power
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 # Slow Block Class
 class SlowBlock(Entity):
-    def __init__(self, position = (0, 0, 0),power=1):
+    def __init__(self, position = (0, 0, 0),power=1,**kwargs):
         super().__init__(
             model = "cube",
             scale = Vec3(3, 0.5, 15),
@@ -50,11 +56,13 @@ class SlowBlock(Entity):
             position = position,
         )
         self.power = power
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 
 # Start Block Class
 class StartBlock(Entity):
-    def __init__(self, position = (0, 0, 0)):
+    def __init__(self, position = (0, 0, 0),**kwargs):
         super().__init__(
             model = "cube",
             scale = (10, 0.8, 10),
@@ -63,14 +71,18 @@ class StartBlock(Entity):
             texture = "white_cube",
             position = position,
         )
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 # End Block Class
 class EndBlock(NormalBlock):
-    def __init__(self, position = (0, 0, 0)):
+    def __init__(self, position = (0, 0, 0),**kwargs):
         super().__init__(
             position = position
         )
         self.color = "#CACACA"
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 def to_tuple(string):
     return tuple(map(int, string.split(', ')))
@@ -118,17 +130,17 @@ class Level:
         for blockToGenerate in elements:
             block = blockToGenerate.split(";")
             if block[0] == "NormalBlock" :
-                self.blocks.append(NormalBlock(position=to_tuple(block[1])))
+                self.blocks.append(NormalBlock(position=to_tuple(block[1]),rotation=to_tuple(block[2])))
             elif block[0] == "JumpBlock" :
-                self.blocks.append(JumpBlock(position=to_tuple(block[1]),power=float(block[2])))
+                self.blocks.append(JumpBlock(position=to_tuple(block[1]),rotation=to_tuple(block[2]),power=float(block[-1])))
             elif block[0] == "SpeedBlock" :
-                self.blocks.append(SpeedBlock(position=to_tuple(block[1]),power=float(block[2])))
+                self.blocks.append(SpeedBlock(position=to_tuple(block[1]),rotation=to_tuple(block[2]),power=float(block[-1])))
             elif block[0] == "SlowBlock" :
-                self.blocks.append(SlowBlock(position=to_tuple(block[1]),power=float(block[2])))
+                self.blocks.append(SlowBlock(position=to_tuple(block[1]),rotation=to_tuple(block[2]),power=float(block[-1])))
             elif block[0] == "EndBlock" :
-                self.finish = EndBlock(position=to_tuple(block[1]))
+                self.finish = EndBlock(position=to_tuple(block[1]),rotation=to_tuple(block[2]))
             elif block[0] == "StartBlock" :
-                self.blocks.append(StartBlock(position=to_tuple(block[1])))
+                self.blocks.append(StartBlock(position=to_tuple(block[1]),rotation=to_tuple(block[2])))
 
     def save(self):
         output = self.title 
