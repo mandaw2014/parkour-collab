@@ -1,0 +1,8 @@
+Level Four
+StartBlock;0, 0, 0
+NormalBlock;0, 1, 12
+NormalBlock;0, 2, 20
+JumpBlock;0, -49, 40;2.5
+NormalBlock;0, 50, 60
+SpeedBlock;0, 50, 93;2
+JumpBlock;0, 15, 163;1.8
