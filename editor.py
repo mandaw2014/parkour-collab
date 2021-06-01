@@ -31,13 +31,17 @@ def to_tuple(string):
 def updateElem(entity,buttons):
     pos = to_tuple(buttons[[but.name for but in buttons].index("pos")].text)
     entity.position = pos
+    rot = to_tuple(buttons[[but.name for but in buttons].index("rot")].text)
+    entity.rotation = rot
     if hasattr(entity,'power') :
-        entity.power = float(buttons[3].text)
+        entity.power = float(buttons[5].text)
 
 def showInfo(entity):
     content = [
             Text('Position:'),
-            InputField(name='pos',default_value=str(tuple(entity.position))[1:-1],limit_content_to = ContentTypes.float+"-")
+            InputField(name='pos',default_value=str(tuple(entity.position))[1:-1],limit_content_to = ContentTypes.float+"-"),
+            Text('Rotation:'),
+            InputField(name='rot',default_value=str(tuple(entity.rotation))[1:-1],limit_content_to = ContentTypes.float+"-")
     ]
     if hasattr(entity,'power') :
         content.append(Text('Power:'))
