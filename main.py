@@ -195,7 +195,7 @@ def update():
             invoke(speed, delay = 1)
 
         if hit.entity == block_5_10:
-            camera.rotation = (0, 0, 180)
+            camera.rotation_z = 180
         if hit.entity == finishBlock_5:
             camera.rotation = (0, 0, 0)
 
@@ -336,7 +336,7 @@ block_5_8 = NormalBlock(position = (-4, 1, 66), rotation = (0, 0, 30))
 block_5_9 = SpeedBlock(position = (0, 1, 78))
 block_5_10 = WeirdBlock(position = (0, 1, 95))
 
-finishBlock_5 = Entity(model = "cube", scale_x = 10, scale_z = 10, collider = "box", texture = "white_cube", color = "#CACACA", position = (0, 1, 108))
+finishBlock_5 = Entity(model = "cube", scale_x = 10, scale_z = 10, collider = "box", texture = "white_cube", color = "#CACACA", position = (0, 1, 112))
 
 block_5_1.disable()
 block_5_2.disable()
