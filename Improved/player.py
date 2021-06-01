@@ -20,6 +20,7 @@ class Player(Entity):
         self.jump_height = 0.3
         self.slope = 40
         self.controls = controls
+        self.sensibility = 70
         for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
@@ -127,8 +128,9 @@ class Player(Entity):
                             self.y += round(self.scale_y -
                                             HeightRay.distance+0.000005, 5)
 
-        camera.rotation_x -= mouse.velocity[1] * 70
-        self.rotation_y += mouse.velocity[0] * 70
+        camera.rotation_x -= mouse.velocity[1] * self.sensibility
+        self.rotation_y += mouse.velocity[0] * self.sensibility
+        camera.rotation_x = min(max(-80,camera.rotation_x),80)
 
     def input(self, key):
         if key == 'space':
