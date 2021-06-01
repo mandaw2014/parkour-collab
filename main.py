@@ -81,7 +81,6 @@ def update():
         resetPlayer()
 
         
-
 def input(key):
     # Restart the level
     if key == "g":
@@ -94,20 +93,16 @@ def input(key):
 level1 = Level("1.level")
 
 #Level02
-
 level2 = Level("2.level")
 
 
 #Level03
-
 level3 = Level("3.level")
 
 #Level04
-
 level4 = Level("4.level")
 
 #Level05
-
 level5 = Level("5.level")
 
 
