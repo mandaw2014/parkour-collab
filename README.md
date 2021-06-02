@@ -13,6 +13,13 @@ ESCAPE - Exit The Game
 G - Restart The Level
 
 
+# Controls - Editor
+
+O - Change camera to orthographic
+
+N - Change camera to normal
+
+
 # Screenshots
 
 ![screenshot1](https://user-images.githubusercontent.com/77012627/120117833-1ca12280-c187-11eb-8e6b-4c9e7b5e9ce5.png)
