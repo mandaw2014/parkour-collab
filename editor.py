@@ -19,7 +19,10 @@ def pickLevel():
 
     currentLevel.clear()
     
-    currentLevel.load(filename)
+    try:
+        currentLevel.load(filename)
+    except FileNotFoundError as fnf:
+        print(fnf)
 
 def newLevel():
     currentLevel.clear()
