@@ -89,12 +89,12 @@ for index,but in enumerate(b):
 currentEntity = None
 
 def input(key):
-    if len(info) == 2 and info[1].active :
-        updateElem(currentEntity)
+    if len(info) == 2 and info[1].active:
+        try:    
+            updateElem(currentEntity)
+        except ValueError as ve:
+            print(ve)
     else :
-        if key == "a down":
-            print("woah")
-
         if key == 'scroll down':
             camera.fov += (0.75 * 250 * time.dt)
 
