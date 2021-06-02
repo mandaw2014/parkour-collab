@@ -35,7 +35,6 @@ def resetPlayer():
     player.rotation =(0,0,0)
     camera.rotation_x = 0
 
-resetPlayer()
 
 def update():
 
@@ -107,5 +106,6 @@ level5 = Level("level/5.level")
 
 
 level1.enable()
+resetPlayer()
 
 app.run()

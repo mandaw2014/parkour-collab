@@ -7,17 +7,12 @@ from tkinter import filedialog as fd
 
 app = Ursina()
 ed = EditorCamera()
-window = tkinter.Tk()
-window.withdraw()
+tkWindow = tkinter.Tk()
+tkWindow.withdraw()
 
 currentLevel = Level()
 
 xyzText = Text(text="", position=(0.5, -0.4))
-
-# def on_submit(paths):
-#     currentLevel.clear()
-#     currentLevel.load(str(paths[0]))
-#     currentLevel.enable()
 
 def pickLevel():
     filename = fd.askopenfilename(initialdir='.', title='Open Level', filetypes=(('Level Files', '.level*'), ('All Files', '*.*')))
@@ -43,37 +38,24 @@ def saveLevel():
 def to_tuple(string):
     return tuple(map(float, string.split(',')))
 
-def updateElem(entity,buttons):
-    pos = to_tuple(buttons[[but.name for but in buttons].index("pos")].text)
-    entity.position = pos
-    rot = to_tuple(buttons[[but.name for but in buttons].index("rot")].text)
-    entity.rotation = rot
-    if hasattr(entity,'power') :
-        entity.power = float(buttons[5].text)
+def updateElem(entity):
+    if len(info) == 2 and info[1].visible:
+        entity.power = float(info[1].text)
+
+info=[]
 
 def showInfo(entity):
-    pass
-    # content = [
-    #         Text('Position:'),
-    #         InputField(name='pos',default_value=str(tuple(entity.position))[1:-1],limit_content_to = ContentTypes.float+"-"),
-    #         Text('Rotation:'),
-    #         InputField(name='rot',default_value=str(tuple(entity.rotation))[1:-1],limit_content_to = ContentTypes.float+"-")
-    # ]
-    # if hasattr(entity,'power') :
-    #     content.append(Text('Power:'))
-    #     content.append(InputField(name='power',default_value = str(entity.power),limit_content_to = ContentTypes.float))
-
-        
-    # content.append(Button(text='Update', color=color.azure))
-    # content.append(Button(text='Delete', color=color.azure))
-    # content.append(Button(text='Close', color=color.azure))
-    # wp = WindowPanel(
-    # title=str(entity),
-    # content=content
-    # )
-    # wp.content[-1].on_click = Func(destroy,wp)
-    # wp.content[-2].on_click = Func(delBlock,wp,entity)
-    # wp.content[-3].on_click = Func(updateElem,entity,wp.content)
+    global info
+    if hasattr(entity,'power') :
+        if info == []:
+            info = [Text('Power:',position = (-0.85,-0.4)),
+                    InputField(name='power',default_value = str(entity.power),limit_content_to = ContentTypes.float,position = (-0.6,-0.45))]
+        else:
+            destroy(info[1])
+            info[1]= InputField(name='power',default_value = str(entity.power),limit_content_to = ContentTypes.float,position = (-0.6,-0.45))
+    else :
+        for i in info :
+            i.visible = False
 
 def delBlock(wp,entity):
     currentLevel.blocks.remove(entity)
@@ -104,29 +86,40 @@ for index,but in enumerate(b):
     but.fit_to_text()
     but.position = (.8,index*.08)
 
+currentEntity = None
+
 def input(key):
+    if len(info) == 2 and info[1].active :
+        updateElem(currentEntity)
+    else :
+        if key == "a down":
+            print("woah")
 
-    if key == "a down":
-        print("woah")
+        if key == 'scroll down':
+            camera.fov += (0.75 * 250 * time.dt)
 
-    if key == 'scroll down':
-        camera.fov += (0.75 * 250 * time.dt)
+        if key == 'scroll up':
+            camera.fov -= (0.75 * 250 * time.dt)
 
-    if key == 'scroll up':
-        camera.fov -= (0.75 * 250 * time.dt)
+        if key == "o":
+            ed.disable()
+            camera.orthographic = True  
 
-    if key == "o":
-        ed.disable()
-        camera.orthographic = True  
+        if key == "n":
+            camera.orthographic = False
+            ed.enable()
 
-    if key == "n":
-        camera.orthographic = False
-        ed.enable()
-
+        if key == "left mouse down":
+            if "Block" in str(type(mouse.hovered_entity)):
+                showInfo(currentEntity)
 
 def update():
+    global currentEntity
     if "Block" in str(type(mouse.hovered_entity)):
-        xyzText.text = "X = {}\nY = {}\nZ = {}".format(mouse.hovered_entity.x, mouse.hovered_entity.y, mouse.hovered_entity.z)
+        currentEntity = mouse.hovered_entity
+    
+    if currentEntity :
+        xyzText.text = "X = {}\nY = {}\nZ = {}".format(currentEntity.x, currentEntity.y, currentEntity.z)
 
 app.run()
-window.mainloop()
+tkWindow.mainloop()
