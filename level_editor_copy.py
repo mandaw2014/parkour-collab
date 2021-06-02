@@ -188,7 +188,7 @@ class Level:
             elif type(element) == JumpBlock:
                 output += "JumpBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(
                     tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
-        print(output)
+                    
         return output
 
 

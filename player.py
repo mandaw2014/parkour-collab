@@ -143,11 +143,9 @@ if __name__ == '__main__':
     app = Ursina()
     window.exit_button.input = None
 
-    ROTATING_SPEED = 30
-    SPEED = 3
 
     player = Player(model='cube', position=(0, 2, 0),
-                    collider='box', SPEED=9, color=color.orange, slope=40)
+                    collider='box', SPEED=1, color=color.orange, slope=40)
 
     ground = Entity(model='plane', scale_x=100, scale_z=100, collider='box', texture="brick",
                     double_sided=True, texture_scale=(50, 50))
@@ -159,10 +157,10 @@ if __name__ == '__main__':
     roof = Entity(model="cube", scale=(3, 1, 1), collider='box',
                   color=color.dark_gray, x=3, z=5, y=1.55)
     spleen = Entity(model="cube", scale=(1, 1, 3), collider='mesh',
-                    color=color.dark_gray, x=3, z=6.5, y=0.5, rotation=(40, 0, 0))
+                    color=color.dark_gray, x=3, z=6.5, y=0.5, rotation=(35, 0, 0))
 
     spleen2 = Entity(model="cube", scale=(1, 1, 3), collider='mesh',
-                     color=color.dark_gray, x=6, z=1.5, y=0.5, rotation=(-40, 90, 0))
+                     color=color.dark_gray, x=6, z=1.5, y=0.5, rotation=(-35, 90, 0))
     spleen2.collider.visible = True
     roof = Entity(model="cube", scale=(3, 1, 1), collider='box',
                   color=color.dark_gray, x=8.3, z=1.5, y=1.35)

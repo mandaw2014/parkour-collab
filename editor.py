@@ -12,7 +12,7 @@ window.withdraw()
 
 currentLevel = Level()
 
-xyText = Text(text="", position=(0.5, -0.4))
+xyzText = Text(text="", position=(0.5, -0.4))
 
 # def on_submit(paths):
 #     currentLevel.clear()
@@ -126,7 +126,7 @@ def input(key):
 
 def update():
     if "Block" in str(type(mouse.hovered_entity)):
-        xyText.text = "X = {}\nY = {}".format(mouse.hovered_entity.x, mouse.hovered_entity.y)
+        xyzText.text = "X = {}\nY = {}\nZ = {}".format(mouse.hovered_entity.x, mouse.hovered_entity.y, mouse.hovered_entity.z)
 
 app.run()
 window.mainloop()
