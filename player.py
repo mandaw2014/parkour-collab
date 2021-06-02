@@ -21,6 +21,7 @@ class Player(Entity):
         self.slope = 40
         self.controls = controls
         self.sensibility = 150
+        self.cursor = [Entity(parent=camera.ui, model="cube", color=color.black,texture = "assets/scope", scale=.02,rotation_y=90)]
         for key, value in kwargs.items():
             try:
                 setattr(self, key, value)
