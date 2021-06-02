@@ -1,5 +1,5 @@
 import tkinter
-from level import * 
+from level_editor_copy import * 
 from ursina import *
 from ursina.prefabs.dropdown_menu import DropdownMenu, DropdownMenuButton
 from ursina.prefabs.file_browser_save import FileBrowserSave

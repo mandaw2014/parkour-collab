@@ -2,8 +2,7 @@ from ursina import *
 
 # Normal Block Class
 
-
-class NormalBlock(Draggable):
+class NormalBlock(Entity):
     def __init__(self, position=(0, 0, 0), **kwargs):
         super().__init__(
             model="cube",
@@ -20,8 +19,7 @@ class NormalBlock(Draggable):
 
 # Jump Block Class
 
-
-class JumpBlock(Draggable):
+class JumpBlock(Entity):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
         super().__init__(
             model="cube",
@@ -39,7 +37,7 @@ class JumpBlock(Draggable):
 # Speed Block Class
 
 
-class SpeedBlock(Draggable):
+class SpeedBlock(Entity):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
         super().__init__(
             model="cube",
@@ -57,7 +55,7 @@ class SpeedBlock(Draggable):
 # Slow Block Class
 
 
-class SlowBlock(Draggable):
+class SlowBlock(Entity):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
         super().__init__(
             model="cube",
@@ -75,7 +73,7 @@ class SlowBlock(Draggable):
 # Start Block Class
 
 
-class StartBlock(Draggable):
+class StartBlock(Entity):
     def __init__(self, position=(0, 0, 0), rotation=(0, 0, 0), **kwargs):
         super().__init__(
             model="cube",
