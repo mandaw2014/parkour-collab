@@ -1,0 +1,12 @@
+Level Six
+StartBlock;0, 0, 0;0, 0, 0
+NormalBlock;0, 1, 10;0, 0, 0
+NormalBlock;-3, 1, 18;0, 0, 30
+NormalBlock;3, 1, 26;0, 0, -30
+NormalBlock;-3, 1, 34;0, 0, 30
+NormalBlock;3, 1, 42;0, 0, -30
+NormalBlock;-3, 1, 50;0, 0, 30
+NormalBlock;3, 1, 58;0, 0, -30
+NormalBlock;-3, 1, 66;0, 0, 30
+SpeedBlock;0, 1, 78;0, 0, 0;2
+EndBlock;0, 1, 112;0, 0, 0
