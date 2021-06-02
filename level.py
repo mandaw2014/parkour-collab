@@ -3,7 +3,7 @@ from ursina import *
 # Normal Block Class
 
 
-class NormalBlock(Entity):
+class NormalBlock(Draggable):
     def __init__(self, position=(0, 0, 0), **kwargs):
         super().__init__(
             model="cube",
@@ -12,14 +12,16 @@ class NormalBlock(Entity):
             collider="box",
             texture="white_cube",
             position=position,
+            parent = scene
         )
+        print(self.parent)
         for key, value in kwargs.items():
             setattr(self, key, value)
 
 # Jump Block Class
 
 
-class JumpBlock(Entity):
+class JumpBlock(Draggable):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
         super().__init__(
             model="cube",
@@ -28,6 +30,7 @@ class JumpBlock(Entity):
             collider="box",
             texture="white_cube",
             position=position,
+            parent = scene
         )
         self.power = power
         for key, value in kwargs.items():
@@ -36,7 +39,7 @@ class JumpBlock(Entity):
 # Speed Block Class
 
 
-class SpeedBlock(Entity):
+class SpeedBlock(Draggable):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
         super().__init__(
             model="cube",
@@ -45,6 +48,7 @@ class SpeedBlock(Entity):
             collider="box",
             texture="white_cube",
             position=position,
+            parent = scene
         )
         self.power = power
         for key, value in kwargs.items():
@@ -53,7 +57,7 @@ class SpeedBlock(Entity):
 # Slow Block Class
 
 
-class SlowBlock(Entity):
+class SlowBlock(Draggable):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
         super().__init__(
             model="cube",
@@ -62,6 +66,7 @@ class SlowBlock(Entity):
             collider="box",
             texture="white_cube",
             position=position,
+            parent = scene
         )
         self.power = power
         for key, value in kwargs.items():
@@ -70,8 +75,8 @@ class SlowBlock(Entity):
 # Start Block Class
 
 
-class StartBlock(Entity):
-    def __init__(self, position=(0, 0, 0), **kwargs):
+class StartBlock(Draggable):
+    def __init__(self, position=(0, 0, 0), rotation=(0, 0, 0), **kwargs):
         super().__init__(
             model="cube",
             scale=(10, 0.8, 10),
@@ -79,7 +84,11 @@ class StartBlock(Entity):
             collider="box",
             texture="white_cube",
             position=position,
+            rotation=rotation,
+            dragging = True,
+            parent = scene
         )
+        
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -103,7 +112,6 @@ def to_tuple(string):
 class Level:
     def __init__(self, src=None):
         if src:
-            src = "./level/"+src
             self.load(src)
             self.disable()
         else:
