@@ -7,4 +7,4 @@ NormalBlock;0, 50, 60;0, 0, 0
 SpeedBlock;0, 50, 70;0, 0, 0;2
 SpeedBlock;0, 50, 93;0, 0, 0;2
 JumpBlock;0, 15, 163;0, 0, 0;1.8
-EndBlock;0, 20, 240;0, 0, 0
+EndBlock;0, 50, 190;0, 0, 0

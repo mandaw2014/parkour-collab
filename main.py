@@ -8,7 +8,7 @@ app = Ursina()
 normalSpeed = 1
 boostSpeed  = 3
 
-normalJump = 0.35
+normalJump = 0.3
 boostJump  = 0.8
 
 # Player
