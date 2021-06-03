@@ -1,12 +1,11 @@
 Level Six
 StartBlock;0, 0, 0;0, 0, 0
-NormalBlock;0, 1, 10;0, 0, 0
-NormalBlock;-3, 1, 18;0, 0, 30
-NormalBlock;3, 1, 26;0, 0, -30
-NormalBlock;-3, 1, 34;0, 0, 30
-NormalBlock;3, 1, 42;0, 0, -30
-NormalBlock;-3, 1, 50;0, 0, 30
-NormalBlock;3, 1, 58;0, 0, -30
-NormalBlock;-3, 1, 66;0, 0, 30
-SpeedBlock;0, 1, 78;0, 0, 0;2
-EndBlock;0, 1, 112;0, 0, 0
+SpeedBlock;0, 0, 13;0, 0, 0;1.5
+SpeedBlock;0, 0, 32;0, 0, 0;2
+SpeedBlock;0, 0, 58;0, 0, 0;2.5
+SpeedBlock;0, 0, 90;0, 0, 0;3
+SpeedBlock;0, 0, 130;0, 0, 0;4.5
+SpeedBlock;0, 0, 180;0, 0, 0;5
+SpeedBlock;0, 0, 240;0, 0, 0;5.5
+SlowBlock;0, 0, 300;0, 0, 0;1
+EndBlock;0, 0, 315;0, 0, 0

@@ -49,6 +49,7 @@ def update():
     if hit.hit :
         player.jump_height = normalJump
         player.SPEED = normalSpeed
+        camera.rotation_z = 0
         if type(hit.entity) == SpeedBlock :
             player.SPEED = boostSpeed * hit.entity.power
 
@@ -57,6 +58,9 @@ def update():
 
         elif type(hit.entity) == JumpBlock :
             player.jump_height = boostJump * hit.entity.power
+
+        elif type(hit.entity) == WeirdBlock :
+            camera.rotation_z = 180
 
 
     if hit.entity == level1.finish:
@@ -79,6 +83,26 @@ def update():
         level5.enable()
         resetPlayer()
 
+    elif hit.entity == level5.finish:
+        level5.disable()
+        level6.enable()
+        resetPlayer()
+
+    elif hit.entity == level6.finish:
+        level6.disable()
+        level7.enable()
+        resetPlayer()
+
+    elif hit.entity == level7.finish:
+        level7.disable()
+        level8.enable()
+        resetPlayer()
+
+
+    elif hit.entity == level8.finish:
+        level8.disable()
+        level9.enable()
+        resetPlayer()
         
 def input(key):
     # Restart the level
@@ -103,6 +127,18 @@ level4 = Level("level/4.level")
 
 #Level05
 level5 = Level("level/5.level")
+
+#Level06
+level6 = Level("level/6.level")
+
+#Level07
+level7 = Level("level/7.level")
+
+#Level08
+level8 = Level("level/8.level")
+
+#Level09
+level9 = Level("level/9.level")
 
 
 level1.enable()

@@ -103,6 +103,61 @@ class EndBlock(NormalBlock):
             setattr(self, key, value)
 
 
+class WeirdBlock(Entity):
+    def __init__(self, position = (0, 0, 0),power = 1,**kwargs):
+        super().__init__(
+            model = "cube",
+            scale = Vec3(3, 0.5, 15),
+            color = "#7116FE",
+            collider = "box",
+            texture = "white_cube",
+            position = position,
+        )
+        self.power = power
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+class Wall(Entity):
+    def __init__(self, position = (0, 0, 0),**kwargs):
+        super().__init__(
+            model = "cube",
+            scale = (5, 4, 1),
+            color = "#AFFF3C",
+            collider = "box",
+            texture = "white_cube",
+            position = position,
+            rotation = (0, 0, 90)
+        )
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+
+class FakeBlock(Entity):
+    def __init__(self, position = (0, 0, 0),**kwargs):
+        super().__init__(
+            model = "cube",
+            scale = Vec3(3, 0.8, 3),
+            color = "#25B701",
+            texture = "white_cube",
+            position = position,
+        )
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+#Not Implemented Yet
+"""
+class MovingBlock(Entity):
+    def __init__(self, position = (0, 0, 0)):
+        super().__init__(
+            model = "cube",
+            scale = Vec3(3, 0.8, 3),
+            color = "#2D49FB",
+            collider = "box",
+            texture = "white_cube",
+            position = position,
+        )
+"""
+
 def to_tuple(string):
     return tuple(map(int, string.split(', ')))
 
@@ -159,6 +214,15 @@ class Level:
             elif block[0] == "SlowBlock":
                 self.blocks.append(SlowBlock(position=to_tuple(
                     block[1]), rotation=to_tuple(block[2]), power=float(block[-1])))
+            elif block[0] == "WeirdBlock":
+                self.blocks.append(WeirdBlock(position=to_tuple(
+                    block[1]), rotation=to_tuple(block[2]), power=float(block[-1])))
+            elif block[0] == "FakeBlock":
+                self.blocks.append(FakeBlock(position=to_tuple(
+                    block[1]), rotation=to_tuple(block[2])))
+            elif block[0] == "Wall":
+                self.blocks.append(Wall(position=to_tuple(
+                    block[1]), rotation=to_tuple(block[2])))
             elif block[0] == "EndBlock":
                 self.finish = EndBlock(position=to_tuple(
                     block[1]), rotation=to_tuple(block[2]))
