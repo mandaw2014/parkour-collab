@@ -5,8 +5,8 @@ import math
 class Player(Entity):
     def __init__(self, model, position, collider, scale=(1, 1, 1), SPEED=3, velocity=(0, 0, 0), MAXJUMP=1, gravity=1,controls = "wasd", **kwargs):
 
-        super().__init__(model="cube", position=position,
-                         collider=collider, scale=(1.3, 1, 1.3), visible_self=False)
+        super().__init__(model="cube", position=position, scale=(1, 1, 1), visible_self=False)
+        self.collider=BoxCollider(self,center=Vec3(0,1,0), size=Vec3(1,2,1))
         mouse.locked = True
         camera.parent = self
         camera.position = (0, 2, 0)
