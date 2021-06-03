@@ -121,7 +121,7 @@ class Wall(Entity):
     def __init__(self, position = (0, 0, 0),**kwargs):
         super().__init__(
             model = "cube",
-            scale = (5, 4, 1),
+            scale = (3, 4, 1),
             color = "#AFFF3C",
             collider = "box",
             texture = "white_cube",
