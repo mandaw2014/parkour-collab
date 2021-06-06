@@ -1,5 +1,5 @@
 import tkinter
-from level_editor_copy import * 
+from editor_level import * 
 from ursina import *
 from ursina.prefabs.dropdown_menu import DropdownMenu, DropdownMenuButton
 from ursina.prefabs.file_browser_save import FileBrowserSave
@@ -82,12 +82,14 @@ b = (Button(text='StartBlock', color="#CACACA",text_color = color.black),
     Button(text='SlowBlock', color = "#FF453F"),
     Button(text='SpeedBlock', color = "#53FFF5",text_color = color.black),
     Button(text='JumpBlock', color = "#FF8B00"),
-    Button(text='EndBlock', color="#CACACA",text_color = color.black))
+    Button(text='WeirdBlock', color="#7116FE",text_color = color.black),
+    Button(text='Wall', color="#AFFF3C",text_color = color.black),
+    Button(text='FakeBlock', color="#25B701",text_color = color.black))
 
 for index,but in enumerate(b):
     but.on_click = Func(newBlock,but)
     but.fit_to_text()
-    but.position = (.8,index*.08)
+    but.position = (.8,.4-index*.08)
 
 currentEntity = None
 

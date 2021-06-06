@@ -102,6 +102,8 @@ class EndBlock(NormalBlock):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+#Weird Block Class
+
 
 class WeirdBlock(Entity):
     def __init__(self, position = (0, 0, 0),power = 1,**kwargs):
@@ -117,6 +119,9 @@ class WeirdBlock(Entity):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+#Wall Class
+
+
 class Wall(Entity):
     def __init__(self, position = (0, 0, 0),**kwargs):
         super().__init__(
@@ -130,6 +135,8 @@ class Wall(Entity):
         )
         for key, value in kwargs.items():
             setattr(self, key, value)
+
+#Fake Block Class
 
 
 class FakeBlock(Entity):

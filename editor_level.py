@@ -2,6 +2,7 @@ from ursina import *
 
 # Normal Block Class
 
+
 class NormalBlock(Draggable):
     def __init__(self, position=(0, 0, 0), **kwargs):
         super().__init__(
@@ -11,13 +12,14 @@ class NormalBlock(Draggable):
             collider="box",
             texture="white_cube",
             position=position,
-            parent = scene
+            parent=scene
         )
         print(self.parent)
         for key, value in kwargs.items():
             setattr(self, key, value)
 
 # Jump Block Class
+
 
 class JumpBlock(Draggable):
     def __init__(self, position=(0, 0, 0), power=1, **kwargs):
@@ -28,7 +30,7 @@ class JumpBlock(Draggable):
             collider="box",
             texture="white_cube",
             position=position,
-            parent = scene
+            parent=scene
         )
         self.power = power
         for key, value in kwargs.items():
@@ -46,7 +48,7 @@ class SpeedBlock(Draggable):
             collider="box",
             texture="white_cube",
             position=position,
-            parent = scene
+            parent=scene
         )
         self.power = power
         for key, value in kwargs.items():
@@ -64,7 +66,7 @@ class SlowBlock(Draggable):
             collider="box",
             texture="white_cube",
             position=position,
-            parent = scene
+            parent=scene
         )
         self.power = power
         for key, value in kwargs.items():
@@ -83,10 +85,9 @@ class StartBlock(Draggable):
             texture="white_cube",
             position=position,
             rotation=rotation,
-            dragging = True,
-            parent = scene
+            parent=scene
         )
-        
+
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -99,6 +100,58 @@ class EndBlock(NormalBlock):
             position=position
         )
         self.color = "#CACACA"
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+# Weird Block Class
+
+
+class WeirdBlock(Draggable):
+    def __init__(self, position=(0, 0, 0), power=1, **kwargs):
+        super().__init__(
+            model="cube",
+            scale=Vec3(3, 0.5, 15),
+            color="#7116FE",
+            collider="box",
+            texture="white_cube",
+            position=position,
+            parent=scene
+        )
+        self.power = power
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+# Wall Class
+
+
+class Wall(Draggable):
+    def __init__(self, position=(0, 0, 0), **kwargs):
+        super().__init__(
+            model="cube",
+            scale=(5, 4, 1),
+            color="#AFFF3C",
+            collider="box",
+            texture="white_cube",
+            position=position,
+            rotation=(0, 0, 90),
+            parent=scene
+        )
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+# Fake Block Class
+
+
+class FakeBlock(Draggable):
+    def __init__(self, position=(0, 0, 0), **kwargs):
+        super().__init__(
+            model="cube",
+            scale=Vec3(3, 0.8, 3),
+            color="#25B701",
+            texture="white_cube",
+            position=position,
+            parent=scene
+        )
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -159,6 +212,15 @@ class Level:
             elif block[0] == "SlowBlock":
                 self.blocks.append(SlowBlock(position=to_tuple(
                     block[1]), rotation=to_tuple(block[2]), power=float(block[-1])))
+            elif block[0] == "WeirdBlock":
+                self.blocks.append(WeirdBlock(position=to_tuple(
+                    block[1]), rotation=to_tuple(block[2]), power=float(block[-1])))
+            elif block[0] == "FakeBlock":
+                self.blocks.append(FakeBlock(position=to_tuple(
+                    block[1]), rotation=to_tuple(block[2])))
+            elif block[0] == "Wall":
+                self.blocks.append(Wall(position=to_tuple(
+                    block[1]), rotation=to_tuple(block[2])))
             elif block[0] == "EndBlock":
                 self.finish = EndBlock(position=to_tuple(
                     block[1]), rotation=to_tuple(block[2]))
@@ -170,25 +232,12 @@ class Level:
         output = self.title
         for element in self.blocks+[self.finish]:
             output += "\n"
-            if type(element) == NormalBlock:
-                output += "NormalBlock;"+str(tuple(int(val) for val in tuple(element.position)))[
-                    1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
-            elif type(element) == EndBlock:
-                output += "EndBlock;"+str(tuple(int(val) for val in tuple(element.position)))[
-                    1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
-            elif type(element) == StartBlock:
-                output += "StartBlock;"+str(tuple(int(val) for val in tuple(element.position)))[
-                    1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
-            elif type(element) == SpeedBlock:
-                output += "SpeedBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(
+            if hasattr(element,"power"):
+                 output += type(element).__name__+";"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(
                     tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
-            elif type(element) == SlowBlock:
-                output += "SlowBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(
-                    tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
-            elif type(element) == JumpBlock:
-                output += "JumpBlock;"+str(tuple(int(val) for val in tuple(element.position)))[1:-1]+";"+str(
-                    tuple(int(val) for val in tuple(element.rotation)))[1:-1]+";"+str(element.power)
-                    
+            else :
+                 output += type(element).__name__+";"+str(tuple(int(val) for val in tuple(element.position)))[
+                        1:-1]+";"+str(tuple(int(val) for val in tuple(element.rotation)))[1:-1]
         return output
 
 
