@@ -66,47 +66,31 @@ class Player(Entity):
             if not xRay.hit:
                 self.x += x_movement
             else:
-                BottomXRay = raycast(origin=self.world_position+(0, -self.scale_y/2, 0), direction=direction,
-                                     distance=self.scale_x/2+abs(x_movement), ignore=[self, ])
-                if BottomXRay.hit:
-                    TopXRay = raycast(origin=self.world_position+(0, -self.scale_y/2+0.1, 0),
-                                     direction=direction, ignore=[self, ])
-                    if TopXRay.hit:
-                        
-                        length = BottomXRay.distance - TopXRay.distance
-                        if length/0.1 <= math.tan(math.radians(self.slope)):
-                            self.x += x_movement
-                    else:
-                        self.x += x_movement
-                    
+                TopXRay = raycast(origin=self.world_position-(0, self.scale_y/2-.1, 0),
+                                  direction=direction,distance = self.scale_x/2+math.tan(math.radians(self.slope))*.1, 
+                                  ignore=[self, ])
+
+                if not TopXRay.hit:
+                    self.x += x_movement
                     HeightRay = raycast(origin=self.world_position+(sign(x_movement)*self.scale_x/2, -self.scale_y/2, 0),
-                                     direction=(0,1,0), ignore=[self, ])
+                                        direction=(0,1,0), ignore=[self, ])
                     if HeightRay.hit :
                         self.y += HeightRay.distance
 
         if z_movement != 0:
-
-            direction = (0, sign(z_movement), 0)
-
+            direction = (0, 0, sign(z_movement))
             zRay = boxcast(origin=self.world_position, direction=direction,
                            distance=self.scale_z/2+abs(z_movement), ignore=[self, ],thickness = (1,1))
 
             if not zRay.hit:
                 self.z += z_movement
             else:
-                BottomZRay = raycast(origin=self.world_position+(0, -self.scale_y/2, 0), direction=direction,
-                                     distance=self.scale_z/2+abs(z_movement), ignore=[self, ])
-                if BottomZRay.hit:
-                    TopZRay = raycast(origin=self.world_position+(0, -self.scale_y/2+0.1, 0),
-                                     direction=direction, ignore=[self, ])
-                    if TopZRay.hit:
-                        
-                        length = BottomZRay.distance - TopZRay.distance
-                        if length/0.1 <= math.tan(math.radians(self.slope)):
-                            self.z += z_movement
-                    else:
-                        self.z += z_movement
-                    
+                TopZRay = raycast(origin=self.world_position-(0, self.scale_y/2-.1, 0),
+                                  direction=direction,distance = self.scale_z/2+math.tan(math.radians(self.slope))*.1, 
+                                  ignore=[self, ])
+
+                if not TopZRay.hit:
+                    self.z += z_movement
                     HeightRay = raycast(origin=self.world_position+(0, -self.scale_y/2, sign(z_movement)*self.scale_z/2),
                                      direction=(0,1,0), ignore=[self, ])
                     if HeightRay.hit :
@@ -129,7 +113,7 @@ if __name__ == '__main__':
     window.exit_button.input = None
 
     player = Player(model='cube', position=(0, 2, 0),
-                    collider='box', SPEED=1, color=color.orange, slope=40)
+                    collider='box', SPEED=1, color=color.orange)
 
     ground = Entity(model='plane', scale_x=100, scale_z=100, collider='box', texture="brick",
                     double_sided=True, texture_scale=(50, 50))
@@ -144,7 +128,7 @@ if __name__ == '__main__':
                     color=color.dark_gray, x=3, z=6.5, y=0.5, rotation=(35, 0, 0))
 
     spleen2 = Entity(model="cube", scale=(1, 1, 3), collider='mesh',
-                     color=color.dark_gray, x=6, z=1.5, y=0.5, rotation=(-35, 90, 0))
+                     color=color.dark_gray, x=6, z=1.5, y=0.5, rotation=(-40, 90, 0))
                      
     roof = Entity(model="cube", scale=(3, 1, 1), collider='box',
                   color=color.dark_gray, x=8.3, z=1.5, y=1.35)
