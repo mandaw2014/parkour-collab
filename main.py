@@ -44,7 +44,8 @@ def update():
 
 
     # What entity the player hits
-    hit = raycast(player.position, player.down, distance=2, ignore=[player,])
+    hit = boxcast(origin=player.position, direction=player.down,
+                       distance=player.scale_y/2+abs(1), ignore=[player, ])
     
     if hit.hit :
         player.jump_height = normalJump
