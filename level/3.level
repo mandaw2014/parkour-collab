@@ -15,5 +15,5 @@ NormalBlock;16, 12, 2;0, 0, 0
 NormalBlock;8, 13, 2;0, 0, 0
 NormalBlock;8, 14, -6;0, 0, 0
 JumpBlock;8, 12, -15;0, 0, 0;1.2
-JumpBlock;8, 35, -25;0, 0, 0;3
+JumpBlock;8, 35, -25;0, 0, 0;2
 EndBlock;8, 80, -10;0, 0, 0

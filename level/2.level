@@ -2,7 +2,7 @@ Level Two
 StartBlock;0, 0, 0;0, 0, 0
 NormalBlock;0, 1, 9;0, 0, 0
 NormalBlock;0, 2, 15;0, 0, 0
-JumpBlock;0, -20, 25;0, 0, 0;1.2
+JumpBlock;0, -20, 25;0, 0, 0;1.4
 NormalBlock;0, 10, 30;0, 0, 0
 NormalBlock;0, 10, 37;0, 0, 0
 SpeedBlock;0, 10, 45;0, 0, 0;1.5
